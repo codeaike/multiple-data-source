@@ -1,0 +1,21 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: demo
+  log:
+    path: ../log
+    level: DEBUG
+  messages:
+    encoding: UTF-8
+    # MessageSourceAutoConfiguration.class中加载,classpath*:{basename}.properties
+    basename: i18n/login/login,i18n/errorMessage/errorMessage
+
+server:
+  port: 10095
+  servlet:
+    context-path: /demo
+
+# mybatis mapper locations
+mybatis-plus:
+  mapper-locations: classpath:mapper/*Mapper.xml

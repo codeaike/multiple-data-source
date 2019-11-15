@@ -1,0 +1,49 @@
+env: dev
+
+spring:
+  datasource:
+    druid:
+      oracle:
+        url: jdbc:oracle:thin:@127.0.0.1:1521/db
+        username: jats001
+        password: jats001
+        driver-class-name: oracle.jdbc.driver.OracleDriver
+        max-active: 10
+        max-wait: 10000
+      mysql:
+        # tcpRcvBuf/tcpSndBuf 缓冲区参数 rewriteBatchedStatements batchUpdate参数
+        url: jdbc:log4jdbc:mysql://127.0.0.1:3306/mydb?allowMultiQueries=true&useUnicode=true&characterEncoding=utf-8&useSSL=false&tcpRcvBuf=1048576&tcpSndBuf=1048576&socketTimeout=180000&rewriteBatchedStatements=true&autoReconnect=true
+        username: revenue
+        password: 2D8OcejKQZcvzjlH5K0Q
+        # 开源 SQL 日志框架，在大多数情况下极大改善了可读性及调试工作
+        driver-class-name: net.sf.log4jdbc.DriverSpy
+        max-active: 10
+        max-wait: 600000
+        # sql监控
+        filters: stat
+        # 检测池里连接的可用性 开启影响性能 默认false
+        test-on-borrow: false
+        # 指明连接是否被空闲连接回收器(如果有)进行检验.如果检测失败,则连接将被从池中去除 默认true
+        test-while-idle: true
+        # 每30秒运行一次空闲连接回收器
+        time-between-eviction-runs-millis: 30000
+        # 检测语句
+        validation-query: "select 1"
+      mysql-backup:
+        # tcpRcvBuf/tcpSndBuf 缓冲区参数 rewriteBatchedStatements batchUpdate参数
+        url: jdbc:mysql://127.0.0.1:3306/mydb?allowMultiQueries=true&useUnicode=true&characterEncoding=utf-8&useSSL=false
+        username: revenue
+        password: 2D8OcejKQZcvzjlH5K0Q
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        max-active: 10
+        max-wait: 600000
+        # sql监控
+        filters: stat
+        # 检测池里连接的可用性 开启影响性能 默认false
+        test-on-borrow: false
+        # 指明连接是否被空闲连接回收器(如果有)进行检验.如果检测失败,则连接将被从池中去除 默认true
+        test-while-idle: true
+        # 每30秒运行一次空闲连接回收器
+        time-between-eviction-runs-millis: 30000
+        # 检测语句
+        validation-query: "select 1"
